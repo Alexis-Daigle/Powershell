@@ -1,12 +1,12 @@
 <#
   DESCRIPTION 
    Script to Automated Email Reminders when Users Passwords due to Expire. 
-   Original by Robert Pearman can be found here: 
+   Original by Robert Pearman can be found here: https://web.archive.org/web/20161116225450/https://gallery.technet.microsoft.com/Password-Expiry-Email-177c3e27
    This version is made to read the configs or flags for this script from a JSON file that is in the same folder. This was created as an experiment and it function.
    Alexis Daigle.
  #>
  
-# Import Configurations from Config.json
+# Import Configurations from the JSON Config File
 $configPath = "$PSScriptRoot\PasswordChangeConfig.json"
 try{ 
 $Conf = Get-Content -Path $configPath | ConvertFrom-Json
@@ -24,41 +24,6 @@ catch{
 [bool]$status = if ($conf.status -like "true") { $true } else { $false }
 [string]$reportto = $conf.reportto
 [array]$interval = $conf.interval
-
-<# param( 
-    # $smtpServer Enter Your SMTP Server Hostname or IP Address 
-    [Parameter(Mandatory=$True,Position=0)] 
-    [ValidateNotNull()] 
-    [string]$smtpServer, 
-    # Notify Users if Expiry Less than X Days 
-    [Parameter(Mandatory=$True,Position=1)] 
-    [ValidateNotNull()] 
-    [int]$expireInDays, 
-    # From Address, eg "IT Support <support@domain.com>" 
-    [Parameter(Mandatory=$True,Position=2)] 
-    [ValidateNotNull()] 
-    [string]$from, 
-    [Parameter(Position=3)] 
-    [switch]$logging, 
-    # Log File Path 
-    [Parameter(Position=4)] 
-    [string]$logPath, 
-    # Testing Enabled 
-    [Parameter(Position=5)] 
-    [switch]$testing, 
-    # Test Recipient, eg recipient@domain.com 
-    [Parameter(Position=6)] 
-    [string]$testRecipient, 
-    # Output more detailed status to console 
-    [Parameter(Position=7)] 
-    [switch]$status, 
-    # Log file recipient 
-    [Parameter(Position=8)] 
-    [string]$reportto, 
-    # Notification Interval 
-    [Parameter(Position=9)] 
-    [array]$interval 
-) #>
 
 ################################################################################################################### 
 # Time / Date Info 
